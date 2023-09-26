@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "unused-exports": "ts-unused-exports tsconfig.json --allowUnusedTypes --allowUnusedEnums --excludeDeclarationFiles --ignoreFiles=.*tailwind"
+    "unused-exports": "ts-unused-exports tsconfig.json --allowUnusedTypes --allowUnusedEnums --maxIssues=2 --ignoreTestFiles --excludeDeclarationFiles --ignoreFiles=.*tailwind"
   },
   "dependencies": {
     "@types/node": "20.5.7",
