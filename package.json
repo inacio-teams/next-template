@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest --passWithNoTests",
-    "unused-exports": "ts-unused-exports tsconfig.json --allowUnusedTypes --allowUnusedEnums --maxIssues=2 --ignoreTestFiles --excludeDeclarationFiles --ignoreFiles=.*tailwind"
+    "unused-exports": "ts-prune --project tsconfig.json -e -i 'src/app' -s '.config.ts'"
   },
   "dependencies": {
     "@types/node": "20.5.7",
@@ -33,7 +33,7 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "jsdom": "^22.1.0",
     "prettier": "^3.0.3",
-    "ts-unused-exports": "^10.0.1",
+    "ts-prune": "^0.10.3",
     "vitest": "^0.34.5"
   }
 }
