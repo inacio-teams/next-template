@@ -139,7 +139,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Run jest
+      - name: Run vitest
         run: pnpm run test
 
   build:
