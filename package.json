@@ -9,7 +9,8 @@
     "lint": "next lint",
     "test": "vitest --passWithNoTests",
     "prune": "ts-prune --project tsconfig.json -e -i 'src/app' -s '.config.ts'",
-    "format": "prettier ./src --check --config './prettier.config.js'"
+    "format": "prettier ./src --check --config './prettier.config.js'",
+    "type": "tsc --noEmit"
   },
   "dependencies": {
     "@types/node": "20.5.7",
