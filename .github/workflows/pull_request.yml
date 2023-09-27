@@ -70,7 +70,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Run ts-unused-exports
-        run: pnpm run unused-exports
+        run: pnpm run prune
 
   codelint:
     name: Find ESLint warnings or errors
@@ -107,10 +107,45 @@ jobs:
       - name: Run lint
         run: pnpm run lint
 
+  codeformat:
+    name: Find Prettier format
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Run Prettier check
+        run: pnpm run format
+
   test:
     name: Running tests
     runs-on: ubuntu-latest
-    needs: [codelint, unusedexports]
+    needs: [codelint, unusedexports, codeformat]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

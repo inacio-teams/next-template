@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest --passWithNoTests",
-    "unused-exports": "ts-prune --project tsconfig.json -e -i 'src/app' -s '.config.ts'"
+    "prune": "ts-prune --project tsconfig.json -e -i 'src/app' -s '.config.ts'",
+    "format": "prettier ./src --check --config './prettier.config.js'"
   },
   "dependencies": {
     "@types/node": "20.5.7",
